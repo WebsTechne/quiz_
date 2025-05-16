@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quiz - E & T Quiz app</title>
+    <link rel="stylesheet" href="../../assets/css/quiz.css">
+</head>
+<body>
+    <span class="minutes">0</span>:<span class="seconds">03</span>
+
+
+
+    <script>
+        const minutes = document.querySelector('.minutes');
+        const seconds = document.querySelector('.seconds');
+        let minuteValue = parseInt(minutes.innerText);
+        let secondValue = parseInt(seconds.innerText);
+
+        function onTimerEnd() {
+            alert('Time is up!');
+            // Add any other logic you want to run when time ends
+        }
+
+        const timer = setInterval(() => {
+            if (minuteValue === 0 && secondValue === 0) {
+                clearInterval(timer);
+                onTimerEnd();
+                return;
+            }
+            if (secondValue === 0) {
+                if (minuteValue > 0) {
+                    minuteValue--;
+                    secondValue = 59;
+                }
+            } else {
+                secondValue--;
+            }
+            minutes.innerText = minuteValue;
+            seconds.innerText = secondValue < 10 ? '0' + secondValue : secondValue;
+        }, 1000);
+    </script>
+</body>
+</html>
